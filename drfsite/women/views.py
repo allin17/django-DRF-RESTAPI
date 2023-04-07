@@ -10,6 +10,10 @@ from women.serializers import WomenSerializer
 
 # Create your views here.
 
+
+class WomenAPIList(generics.ListCreateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
 class WomenAPIView(APIView):
     def get(self, request):
         w = Women.objects.all()
