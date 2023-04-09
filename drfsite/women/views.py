@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 
 from women.models import Women, Category
-from women.permissions import IsAdminOrReadOnly
+from women.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from women.serializers import WomenSerializer
 
 
@@ -20,6 +20,7 @@ class WomenAPIList(generics.ListCreateAPIView):
 class WomenAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
+    permission_classes = (IsOwnerOrReadOnly, )
 
 
 class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
